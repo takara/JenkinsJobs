@@ -16,7 +16,10 @@
       <command>#/bin/bash
 cd ${JENKINS_HOME}
 git add .
-git status
+st=$( git status )
+if [ &quot;$( echo ${st}|grep nothing )&quot; != &quot;&quot; ] ; then
+    exit
+fi
 comment=$( date +&apos;%Y/%m/%d %H:%M:%S バックアップ&apos; )
 git commit -m &quot;${comment}&quot;
 git push</command>
